@@ -136,7 +136,9 @@ module.exports = function (grunt) {
         MavenModule.build(pomFilePath, callbacks);
     });
 
-    grunt.registerTask('maven-build-default', 'Build the default configured maven project', ['maven-build', ':', GruntModule.getOption('maven.build.pom')].join(''));
+    grunt.registerTask('maven-build-default', 'Build the default configured maven project', function() {
+        grunt.task.run(['maven-build', ':', GruntModule.getOption('maven.build.pom')].join(''));
+    });
 
     grunt.registerTask('deploy-archive-jboss-as', 'Deploy archive to JBoss AS', function (jbossHome, fileNamePath) {
         var done = this.async(),
